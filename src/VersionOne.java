@@ -15,9 +15,17 @@ public class VersionOne {
         boolean f_canread=In_file.canRead();  // check if the file is readable
         System.out.println(" this the content of the file : "+ f_canread +"\n"+f_conent);
 
+        // create file to pass output to it
+        File Out_file= new File("C:\\Users\\OnceLearner\\Music\\program\\Out_file","out_file.txt");
+        boolean flag=Out_file.createNewFile();
+
+        FileWriter fwrite=new FileWriter(Out_file);
+
+
         // create a channel to pass argument through the OutputStream class
         OutputStream out = proc.getOutputStream();
         PrintWriter writer = new PrintWriter(out);
+
 
 
         writer.write(f_conent); //'\n' to simulate enter key or we can run it without it
@@ -28,6 +36,10 @@ public class VersionOne {
         String line = null;
         while ((line = reader.readLine()) != null) {
             System.out.println(line);
+
+            fwrite.write(line);
+            fwrite.close();
         }
+
     }
 }
